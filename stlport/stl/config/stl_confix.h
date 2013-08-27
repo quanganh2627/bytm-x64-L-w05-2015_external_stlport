@@ -79,7 +79,7 @@
 
 /* __EDG_VERSION__ is an official EDG macro, compilers based
  * on EDG have to define it. */
-#if defined (__EDG_VERSION__) && !defined(ANDROID)
+#if defined (__EDG_VERSION__)
 #  if (__EDG_VERSION__ >= 244) && !defined (_STLP_HAS_INCLUDE_NEXT)
 #    define _STLP_HAS_INCLUDE_NEXT
 #  endif
