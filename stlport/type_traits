@@ -723,28 +723,28 @@ struct add_pointer
 
 namespace detail {
 
-template <bool,class _U>
+template <bool,typename _UU>
 struct _decay_aux2
 {
-    typedef typename remove_cv<_U>::type type;
+    typedef typename remove_cv<_UU>::type type;
 };
 
-template <class _U>
-struct _decay_aux2<true,_U>
+template <class _UU>
+struct _decay_aux2<true,_UU>
 {
-    typedef typename add_pointer<_U>::type type;
+    typedef typename add_pointer<_UU>::type type;
 };
 
-template <bool, class _U>
+template <bool, class _UU>
 struct _decay_aux1
 {
-    typedef typename _decay_aux2<is_function<_U>::value,_U>::type type; 
+    typedef typename _decay_aux2<is_function<_UU>::value,_UU>::type type;
 };
 
-template <class _U>
-struct _decay_aux1<true,_U>
+template <class _UU>
+struct _decay_aux1<true,_UU>
 {
-    typedef typename remove_extent<_U>::type* type;
+    typedef typename remove_extent<_UU>::type* type;
 };
 
 } // namespace detail
@@ -753,10 +753,10 @@ template <class _Tp>
 class decay
 {
   private:
-    typedef typename remove_reference<_Tp>::type _U;
+    typedef typename remove_reference<_Tp>::type _UU;
 
   public:
-    typedef typename detail::_decay_aux1<is_array<_U>::value,_U>::type type;
+    typedef typename detail::_decay_aux1<is_array<_UU>::value,_UU>::type type;
 };
 
 template <bool, class _Tp = void>
